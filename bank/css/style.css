@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: lightblue;
+}
+
+.nav-bar img {
+  width: 80px;
+}
+
+.nav-bar img:hover {
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1); 
+}
+
+.nav-bar img:active {
+  -ms-transform: scale(0.9); /* IE 9 */
+  -webkit-transform: scale(0.9); /* Safari 3-8 */
+  transform: scale(0.9); 
+}
+
+.nav-items a {
+  text-decoration: none;
+  font-weight: 600;
+  color: hsl(233, 8%, 62%);
+  margin-left: 10px;
+  padding-right: 50px;
+  font-size: 25px;
+  color: ghostwhite;
+}
+
+.nav-items a:hover {
+  color: burlywood;
+
+}
+
+.nav-items a:active {
+  color: red;
+  transform: translateY(4px);
+}
+
+.nav-bar input {
+  padding: 12px 28px;
+  border: none;
+  outline-width: 0;
+  color: white;
+  border-radius: 24px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 20px;
+  background-color: blue;
+}
+
+.nav-bar input:hover {
+  background-color: burlywood;
+}
+
+.nav-bar input:active {
+  background-color: lightblue;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.head {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.head-img-container {
+  background-size: cover;
+  background-position: bottom;
+  padding-top: 20px;
+}
+
+.head-img-container img {
+  width: 500px;
+  padding-bottom: 10px;
+}
+
+.head-text-container h1 {
+  font-size: 70px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: hsl(233, 26%, 24%);
+  line-height: 1.1;
+}
+
+.head-text-container p {
+  color: hsl(233, 8%, 62%);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.container {
+  background-color: lightblue;
+}
+
+.why {
+  padding-top: 10vh;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 5vh;
+}
+
+.why h1 {
+  font-size: 45px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: hsl(233, 26%, 24%);
+}
+
+.feature {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 10vh;
+}
+
+.feature-icon img {
+  width: 65px;
+  margin-bottom: 5px;
+}
+
+.feature-icon h1 {
+  font-size: 25px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: hsl(233, 26%, 24%);
+}
+
+.feature-icon p {
+  color: hsl(233, 8%, 62%);
+  font-weight: 700;
+}

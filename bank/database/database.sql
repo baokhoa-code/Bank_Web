@@ -1,0 +1,74 @@
+
+    USE BANK; 
+
+    CREATE TABLE USER(
+      U_ID            CHAR(12)      NOT NULL,
+      FULL_NAME       VARCHAR(50)   NOT NULL,
+      D_O_B           DATE          NOT NULL,
+      SEX             VARCHAR(6)    NOT NULL,
+      ADDRESS         VARCHAR(100)  NOT NULL,
+      PHONE           VARCHAR(11)   NOT NULL,
+      EMAIL           VARCHAR(100)  NOT NULL,
+      PRIMARY KEY(U_ID)
+    );
+    INSERT INTO USER VALUES('U01','PHAM THANH LONG',     STR_TO_DATE('11-08-2001','%d-%m-%Y'),'MALE', '3, THANH XUAN, HAU GIANG','0916456486','PTLONG@GMAIL.COM');
+    INSERT INTO USER VALUES('U02','HUYNH NGUYEN DIEM TRANG', STR_TO_DATE('1-08-2001','%d-%m-%Y'),'FEMALE', '257, NINH KIEU, CAN THO','0917436596','HNDTRANG@GMAIL.COM');
+
+    CREATE TABLE ADMIN(
+      A_ID            CHAR(12)      NOT NULL,
+      FULL_NAME       VARCHAR(50)   NOT NULL,
+      D_O_B           DATE          NOT NULL,
+      SEX             VARCHAR(6)    NOT NULL,
+      ADDRESS          VARCHAR(100) NOT NULL,
+      PHONE           VARCHAR(11)   NOT NULL,
+      EMAIL           VARCHAR(100)  NOT NULL,
+      PRIMARY KEY(A_ID)
+    );
+    INSERT INTO ADMIN VALUES('A01','HUYNH HUU BAO KHOA', STR_TO_DATE('13-11-2001','%d-%m-%Y'),'MALE', '2, CAI TAC, HAU GIANG','0372753988','HHBKHOA@GMAIL.COM');
+    INSERT INTO ADMIN VALUES('A02','DUONG HUYNH NHAN',   STR_TO_DATE('11-08-2001','%d-%m-%Y'),'MALE', 'NGAY BAY, HAU GIANG','0354984001','DHNHAN@GMAIL.COM');
+
+    CREATE TABLE USER_ACCOUNT(
+      ACC_NUM         CHAR(12)      NOT NULL,
+      USER            CHAR(12)      NOT NULL,
+      PASS            CHAR(6)       NOT NULL,
+      CREATE_DATE     TIMESTAMP     NOT NULL,
+      BALANCE         FLOAT         DEFAULT 0 CHECK(BALANCE >= 0),
+      ANSWER          VARCHAR(20)   NOT NULL,
+      AVATAR          LONGBLOB      ,
+      CONSTRAINT fk_USER_ACCOUNT FOREIGN KEY (USER) REFERENCES USER(U_ID),
+      PRIMARY KEY(ACC_NUM)
+    );
+    INSERT INTO USER_ACCOUNT VALUES('UA01','U01','1',STR_TO_DATE('2-11-2021','%d-%m-%Y'),100,'1',LOAD_FILE('C:/xampp/htdocs/bank/images/avatar/1.jpg'));
+    INSERT INTO USER_ACCOUNT VALUES('UA02','U02','2',STR_TO_DATE('2-11-2021','%d-%m-%Y'),200,'2',LOAD_FILE('C:/xampp/htdocs/bank/images/avatar/2.jpg'));
+
+    CREATE TABLE USER_TRANSACTION(
+      T_ID            INT           AUTO_INCREMENT,
+      T_TIME          TIMESTAMP      NOT NULL,
+      WHO             CHAR(12)       NOT NULL,
+      TYPE            VARCHAR(60)    NOT NULL,
+      MESSAGE         VARCHAR(100)   DEFAULT '0',
+      CONSTRAINT fk_USER_TRANSACTION FOREIGN KEY (WHO) REFERENCES USER_ACCOUNT(ACC_NUM),
+      PRIMARY KEY(T_ID)
+    );
+
+    CREATE TABLE ADMIN_ACCOUNT(
+      ACC_NUM         CHAR(12)      NOT NULL,
+      ADMIN           CHAR(12)      NOT NULL,
+      PASS            CHAR(10)      NOT NULL,
+      ANSWER          VARCHAR(20)   NOT NULL,
+      AVATAR          LONGBLOB      ,
+      CONSTRAINT fk_ADMIN_ACCOUNT FOREIGN KEY (ADMIN) REFERENCES ADMIN(A_ID),
+      PRIMARY KEY(ACC_NUM)
+    );
+    INSERT INTO ADMIN_ACCOUNT VALUES('AA01','A01','1','1',LOAD_FILE('C:/xampp/htdocs/bank/images/avatar/1.jpg'));
+    INSERT INTO ADMIN_ACCOUNT VALUES('AA02','A02','2','2',LOAD_FILE('C:/xampp/htdocs/bank/images/avatar/2.jpg'));
+
+    CREATE TABLE ADMIN_TRANSACTION(
+      T_ID            INT           AUTO_INCREMENT,
+      T_TIME          TIMESTAMP     NOT NULL,
+      WHO             CHAR(12)      NOT NULL,
+      TYPE            VARCHAR(30)   NOT NULL,
+      MESSAGE         VARCHAR(100)  DEFAULT '0',
+      CONSTRAINT fk_ADMIN_TRANSACTION FOREIGN KEY (WHO) REFERENCES ADMIN_ACCOUNT(ACC_NUM),
+      PRIMARY KEY(T_ID)
+    );
