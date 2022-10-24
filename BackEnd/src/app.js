@@ -15,16 +15,30 @@ app.get('/', (req, res) => {
 })
 
 //Route for admin
-app.route('/api/admin/:username')
+app.route('/api/admin/login/:accnum')
     .get(adminController.findPass)
 
-app.route('api/admin/personalInfor/:username')
+app.route('api/admin/personalInfor/:accnum')
     .get(adminController.findPersonalInfor)
     .put(adminController.updatePersonalInfor)
 
-app.route('api/admin/accountInfor/:username')
+app.route('api/admin/accountInfor/:accnum')
     .get(adminController.findAccountInfor)
     .put(adminController.updateAccountInfor)
+
+app.route('api/admin/trasaction/:accnum')
+    .get(adminController.findTransactions)
+
+app.route('api/admin/user/')
+    .post(adminController.createUser)
+
+app.route('api/admin/userAccount/')
+    .get(adminController.findAllUserAccount)
+    .post(adminController.createUserAccount)
+
+app.route('api/admin/userAccount/:accnum&:id')
+    .get(adminController.findUserAccount)
+
 
 //Route for user
 app.route('/api/user/:username')
